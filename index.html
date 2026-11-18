@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Site institucional da [NOME DA ACADEMIA]. Treinamento personalizado, estrutura completa e acompanhamento profissional." />
+  <title>[NOME DA ACADEMIA] — Treinamento, Saúde e Performance</title>
+
+  <!-- Tipografia: Plus Jakarta Sans e Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#111315',
+              surface: '#181B1E',
+              muted: '#5C6470',
+              border: '#E5E7EB',
+              light: '#F8F9FA',
+              accent: '#B45309',
+              accentHover: '#92400E',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Estilos customizados -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Configuração de dados e publicações -->
+  <script src="js/config.js"></script>
+</head>
+<body class="bg-white text-brand-dark selection:bg-brand-dark selection:text-white">
+
+  <!-- =====================================================================
+       1. CABEÇALHO INSTITUCIONAL
+       ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logotipo -->
+        <a href="#inicio" onclick="navigateTo('institucional', 'inicio')" class="flex items-center gap-3 focus:outline-none group" aria-label="Página inicial da academia">
+          <div class="w-9 h-9 rounded bg-brand-dark text-white flex items-center justify-center transition-colors group-hover:bg-brand-accent">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 5v14M18 5v14M6 12h12M3 8v8M21 8v8" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-bold text-base sm:text-lg tracking-tight text-brand-dark leading-none" data-bind="nome">[NOME DA ACADEMIA]</span>
+            <span class="text-[11px] uppercase tracking-widest text-brand-muted mt-1">Treinamento & Saúde</span>
+          </div>
+        </a>
+
+        <!-- Navegação Desktop -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-700" aria-label="Navegação principal">
+          <a href="#sobre" onclick="navigateTo('institucional', 'sobre')" class="hover:text-brand-dark transition-colors">A Academia</a>
+          <a href="#estrutura" onclick="navigateTo('institucional', 'estrutura')" class="hover:text-brand-dark transition-colors">Estrutura e Modalidades</a>
+          <a href="#equipe" onclick="navigateTo('institucional', 'equipe')" class="hover:text-brand-dark transition-colors">Profissionais</a>
+          <a href="#informacoes" onclick="navigateTo('institucional', 'informacoes')" class="hover:text-brand-dark transition-colors">Horários e Local</a>
+          <button type="button" onclick="navigateTo('novidades')" id="nav-novidades-desktop" class="hover:text-brand-dark transition-colors flex items-center gap-1.5">
+            <span>Novidades</span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-accent" title="Página de comunicados"></span>
+          </button>
+        </nav>
+
+        <!-- Botão Contato + Menu Mobile -->
+        <div class="flex items-center gap-3">
+          <a href="#" data-whatsapp-link="Olá! Gostaria de obter informações sobre planos e horários da academia." target="_blank" rel="noopener noreferrer"
+             class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-brand-dark hover:bg-brand-accent rounded-md transition-colors">
+            Agendar Visita
+          </a>
+
+          <button type="button" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu"
+                  class="md:hidden p-2.5 rounded-md text-gray-700 hover:text-brand-dark hover:bg-gray-100 focus:outline-none"
+                  aria-label="Abrir menu de navegação">
+            <svg id="icon-menu-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="icon-menu-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-1">
+      <a href="#sobre" onclick="navigateTo('institucional', 'sobre', true)" class="block py-3 px-3 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50">A Academia</a>
+      <a href="#estrutura" onclick="navigateTo('institucional', 'estrutura', true)" class="block py-3 px-3 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50">Estrutura e Modalidades</a>
+      <a href="#equipe" onclick="navigateTo('institucional', 'equipe', true)" class="block py-3 px-3 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50">Profissionais</a>
+      <a href="#informacoes" onclick="navigateTo('institucional', 'informacoes', true)" class="block py-3 px-3 rounded-md text-base font-medium text-gray-800 hover:bg-gray-50">Horários e Localização</a>
+      <button type="button" onclick="navigateTo('novidades', null, true)" class="w-full text-left py-3 px-3 rounded-md text-base font-medium text-brand-accent hover:bg-gray-50 flex items-center justify-between">
+        <span>Novidades e Atualizações</span>
+        <span class="text-xs font-normal text-gray-500">Página 2 &rarr;</span>
+      </button>
+      <div class="pt-3 px-3">
+        <a href="#" data-whatsapp-link="Olá! Gostaria de conhecer a academia e saber mais sobre as matrículas." target="_blank" rel="noopener noreferrer"
+           class="w-full flex items-center justify-center px-4 py-3 text-sm font-medium text-white bg-brand-dark hover:bg-brand-accent rounded-md transition-colors">
+          Entrar em contato pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       PÁGINA 1 — INSTITUCIONAL
+       ===================================================================== -->
+  <main id="page-institucional" class="page-view">
+
+    <!-- 2. HERO -->
+    <section id="inicio" class="relative bg-brand-light border-b border-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-brand-muted">
+              <span class="w-6 h-px bg-brand-accent"></span>
+              <span>Espaço de Treinamento Físico</span>
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-brand-dark leading-[1.15]" data-bind="nome">
+              [NOME DA ACADEMIA]
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl" data-bind="slogan">
+              Treinamento orientado com critério técnico, estrutura completa e foco contínuo na sua saúde.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <a href="#sobre"
+                 class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-white bg-brand-dark hover:bg-gray-800 rounded-md transition-colors">
+                Conhecer a academia
+              </a>
+              <a href="#" data-whatsapp-link="Olá! Gostaria de falar com a recepção da academia." target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-brand-dark bg-white border border-gray-300 hover:border-brand-dark rounded-md transition-colors">
+                <svg class="w-4 h-4 text-emerald-700" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.361a9.927 9.927 0 004.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969 0-2.663-1.037-5.167-2.92-7.05A9.904 9.904 0 0012.031 2zm5.815 14.281c-.244.688-1.422 1.316-1.969 1.398-.504.075-1.142.107-1.842-.115-.425-.135-.971-.316-1.671-.619-2.941-1.27-4.861-4.234-5.008-4.43-.146-.195-1.196-1.591-1.196-3.035 0-1.444.756-2.154 1.025-2.447.269-.293.586-.366.781-.366.195 0 .391.002.562.01.18.009.422-.068.66.504.244.586.83 2.026.903 2.173.073.146.122.317.024.512-.098.195-.146.317-.293.488-.146.171-.308.382-.439.512-.146.146-.299.305-.128.598.171.293.759 1.252 1.629 2.028 1.119.998 2.062 1.307 2.355 1.454.293.146.464.122.635-.073.171-.195.732-.854.928-1.147.195-.293.391-.244.659-.146.269.098 1.709.806 2.002.952.293.146.488.22.562.342.073.122.073.708-.171 1.396z"/>
+                </svg>
+                <span>Falar pelo WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="relative rounded-lg overflow-hidden bg-gray-200 aspect-[4/3] border border-gray-200">
+              <img
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80"
+                alt="Ambiente interno da academia com equipamentos de musculação organizados e iluminação natural"
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <p class="text-xs text-gray-500 mt-2.5 text-right">
+              Imagem ilustrativa temporária — substituir por fotografia oficial da recepção ou salão principal.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SOBRE A ACADEMIA -->
+    <section id="sobre" class="py-16 sm:py-24 bg-white border-b border-gray-100">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Sobre a Academia</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark leading-snug">
+              Um ambiente pensado para constância, segurança e evolução real.
+            </h2>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Fundada em <span class="placeholder-field text-gray-800 font-medium">[ANO DE FUNDAÇÃO]</span> na cidade de <span class="placeholder-field text-gray-800 font-medium">[CIDADE]</span>.
+            </p>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6 text-gray-600 leading-relaxed">
+            <p>
+              A <strong class="font-semibold text-brand-dark" data-bind="nome">[NOME DA ACADEMIA]</strong> nasceu com o propósito de oferecer um espaço organizado, bem equipado e acolhedor para pessoas que buscam melhorar seu condicionamento físico, saúde e qualidade de vida.
+            </p>
+            <p>
+              <span class="placeholder-field text-gray-800">[Espaço reservado para inserir um breve parágrafo sobre a história da academia, sua trajetória no bairro ou cidade e o perfil de atendimento oferecido aos alunos.]</span>
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-gray-200">
+              <div>
+                <h3 class="font-display font-semibold text-brand-dark text-base mb-1.5">Acompanhamento Técnico</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Prescrição de treinos individualizados e orientação presente em sala durante todo o horário de funcionamento.
+                </p>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-brand-dark text-base mb-1.5">Manutenção e Higiene</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Equipamentos revisados periodicamente e ambientes higienizados continuamente para conforto dos alunos.
+                </p>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-brand-dark text-base mb-1.5">Ambiente Respeitoso</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                  Atendimento cordial para iniciantes e praticantes experientes, respeitando o ritmo e o objetivo de cada pessoa.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ESTRUTURA E MODALIDADES -->
+    <section id="estrutura" class="py-16 sm:py-24 bg-brand-light border-b border-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-2xl mb-14">
+          <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Estrutura e Atividades</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mt-2">
+            Ambientes e modalidades disponíveis
+          </h2>
+          <p class="text-gray-600 mt-3 leading-relaxed">
+            Conheça os espaços de treinamento e as atividades oferecidas. Ajuste ou adicione modalidades conforme a grade oficial da unidade.
+          </p>
+        </div>
+
+        <div class="space-y-16">
+
+          <!-- Musculação -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-6">
+              <div class="rounded-lg overflow-hidden bg-gray-200 aspect-[16/10] border border-gray-200">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=80"
+                     alt="Área de musculação e pesos livres da academia" class="w-full h-full object-cover" loading="lazy" />
+              </div>
+            </div>
+            <div class="lg:col-span-6 space-y-4">
+              <span class="text-xs font-medium text-brand-muted uppercase tracking-wider">01 — Sala Principal</span>
+              <h3 class="font-display text-xl sm:text-2xl font-bold text-brand-dark">Musculação e Treinamento de Força</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Área equipada com máquinas articuladas, estação de cabos, bancos reguláveis e linha completa de halteres e anilhas para exercícios livres e guiados.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-2 pt-2 border-t border-gray-200">
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+                  <span>Montagem de ficha de treino conforme objetivo e histórico físico</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+                  <span>Reavaliação e atualização periódica das séries</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Cardio -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-6 lg:order-2">
+              <div class="rounded-lg overflow-hidden bg-gray-200 aspect-[16/10] border border-gray-200">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1000&q=80"
+                     alt="Equipamentos cardiovasculares e esteiras em ambiente climatizado" class="w-full h-full object-cover" loading="lazy" />
+              </div>
+            </div>
+            <div class="lg:col-span-6 lg:order-1 space-y-4">
+              <span class="text-xs font-medium text-brand-muted uppercase tracking-wider">02 — Área Aeróbica</span>
+              <h3 class="font-display text-xl sm:text-2xl font-bold text-brand-dark">Condicionamento Cardiorrespiratório</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Setor dedicado ao trabalho aeróbico com esteiras, bicicletas ergométricas e elípticos, ideal para resistência cardiovascular, aquecimento e controle metabólico.
+              </p>
+              <ul class="text-sm text-gray-700 space-y-2 pt-2 border-t border-gray-200">
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+                  <span>Ambiente ventilado e climatizado</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+                  <span>Uso livre durante todo o horário de funcionamento</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Funcional -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-6">
+              <div class="rounded-lg overflow-hidden bg-gray-200 aspect-[16/10] border border-gray-200">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=80"
+                     alt="Espaço para treinamento funcional, alongamento e mobilidade" class="w-full h-full object-cover" loading="lazy" />
+              </div>
+            </div>
+            <div class="lg:col-span-6 space-y-4">
+              <span class="text-xs font-medium text-brand-muted uppercase tracking-wider">03 — Espaço Multiuso</span>
+              <h3 class="font-display text-xl sm:text-2xl font-bold text-brand-dark">Treinamento Funcional e Mobilidade</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Área equipada com acessórios para exercícios integrados, estabilidade articular, alongamento e atividades em grupo conduzidas por profissionais habilitados.
+              </p>
+              <p class="text-sm text-gray-600 pt-2 border-t border-gray-200">
+                <strong class="font-medium text-brand-dark">Outras modalidades oferecidas:</strong>
+                <span class="placeholder-field text-gray-800">[Listar aqui outras modalidades oficiais, ex.: Pilates, Spinning, Lutas ou Ginástica, caso existam]</span>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROFISSIONAIS -->
+    <section id="equipe" class="py-16 sm:py-24 bg-white border-b border-gray-100">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div class="max-w-xl">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Equipe Técnica</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mt-2">
+              Profissionais responsáveis
+            </h2>
+            <p class="text-gray-600 mt-2.5 leading-relaxed">
+              Profissionais de Educação Física devidamente registrados no CREF, preparados para orientar cada etapa do seu treinamento.
+            </p>
+          </div>
+          <p class="text-xs text-gray-500">
+            * Substitua as fotos e registros abaixo pelos dados reais da equipe.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <article class="group">
+            <div class="rounded-lg overflow-hidden bg-gray-100 aspect-[4/4] mb-4 border border-gray-200">
+              <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=800&q=80"
+                   alt="Retrato do profissional de Educação Física" class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">
+              <span class="placeholder-field">[Nome do Coordenador(a)]</span>
+            </h3>
+            <p class="text-sm font-medium text-brand-accent mt-0.5">
+              Coordenação Técnica • <span class="placeholder-field">[CREF 000000-G/UF]</span>
+            </p>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+              <span class="placeholder-field">[Especialidade: ex. Prescrição de Treinamento de Força e Avaliação Física.]</span>
+            </p>
+          </article>
+
+          <article class="group">
+            <div class="rounded-lg overflow-hidden bg-gray-100 aspect-[4/4] mb-4 border border-gray-200">
+              <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=800&q=80"
+                   alt="Retrato da instrutora de Educação Física" class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">
+              <span class="placeholder-field">[Nome da Instrutora]</span>
+            </h3>
+            <p class="text-sm font-medium text-brand-accent mt-0.5">
+              Instrutora • <span class="placeholder-field">[CREF 000000-G/UF]</span>
+            </p>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+              <span class="placeholder-field">[Especialidade: ex. Musculação, Condicionamento Físico e Treinamento Funcional.]</span>
+            </p>
+          </article>
+
+          <article class="group">
+            <div class="rounded-lg overflow-hidden bg-gray-100 aspect-[4/4] mb-4 border border-gray-200">
+              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=800&q=80"
+                   alt="Retrato do instrutor de Educação Física" class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">
+              <span class="placeholder-field">[Nome do Instrutor]</span>
+            </h3>
+            <p class="text-sm font-medium text-brand-accent mt-0.5">
+              Instrutor • <span class="placeholder-field">[CREF 000000-G/UF]</span>
+            </p>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+              <span class="placeholder-field">[Especialidade: ex. Reabilitação Postural, Mobilidade e Hipertrofia.]</span>
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INFORMAÇÕES ÚTEIS -->
+    <section id="informacoes" class="py-16 sm:py-24 bg-brand-light border-b border-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+
+          <div class="lg:col-span-5 space-y-8">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Atendimento e Localização</span>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mt-2">
+                Informações úteis
+              </h2>
+            </div>
+
+            <div class="space-y-3">
+              <h3 class="font-display font-semibold text-base text-brand-dark border-b border-gray-200 pb-2">
+                Horários de Funcionamento
+              </h3>
+              <dl id="horarios-lista" class="space-y-2 text-sm"></dl>
+            </div>
+
+            <div class="space-y-2">
+              <h3 class="font-display font-semibold text-base text-brand-dark border-b border-gray-200 pb-2">
+                Endereço
+              </h3>
+              <p class="text-sm text-gray-700 leading-relaxed" data-bind="enderecoCompleto">
+                [Rua Exemplo, 123 — Bairro, Cidade - UF, CEP 00000-000]
+              </p>
+              <div class="pt-1">
+                <a href="#" data-maps-link target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-accent hover:text-brand-accentHover transition-colors">
+                  <span>Abrir rota no Google Maps</span>
+                  <span aria-hidden="true">&nearr;</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <h3 class="font-display font-semibold text-base text-brand-dark border-b border-gray-200 pb-2">
+                Contato Direto
+              </h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>
+                  <span class="text-gray-500">WhatsApp:</span>
+                  <a href="#" data-whatsapp-link="Olá! Gostaria de mais informações sobre a academia." target="_blank" rel="noopener noreferrer"
+                     class="font-medium text-brand-dark hover:text-brand-accent underline underline-offset-4 ml-1" data-bind="whatsappExibicao">
+                    ([DDD]) [99999-9999]
+                  </a>
+                </li>
+                <li>
+                  <span class="text-gray-500">Telefone fixo:</span>
+                  <span class="font-medium text-brand-dark ml-1" data-bind="telefoneExibicao">([DDD]) [3333-3333]</span>
+                </li>
+                <li>
+                  <span class="text-gray-500">E-mail:</span>
+                  <span class="font-medium text-brand-dark ml-1" data-bind="email">[contato@suaacademia.com.br]</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col">
+            <div class="w-full h-80 sm:h-96 lg:h-full min-h-[340px] rounded-lg overflow-hidden border border-gray-300 bg-gray-200">
+              <iframe id="google-maps-iframe" title="Localização da Academia no Google Maps"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197587029927!2d-46.6564943!3d-23.5613462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzQwLjgiUyA0NsKwMzknMjMuNCJX!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                      class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              * Atualize o link de incorporação do Google Maps no objeto ACADEMY_CONFIG para apontar para o endereço exato da unidade.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CTA -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark">
+          Venha conhecer nossa estrutura pessoalmente
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Nossa equipe está à disposição para apresentar os ambientes, esclarecer dúvidas sobre planos e agendar uma visita sem compromisso.
+        </p>
+        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="#" data-whatsapp-link="Olá! Gostaria de agendar uma visita para conhecer a academia." target="_blank" rel="noopener noreferrer"
+             class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium text-white bg-brand-dark hover:bg-brand-accent rounded-md transition-colors">
+            Agendar visita pelo WhatsApp
+          </a>
+          <button type="button" onclick="navigateTo('novidades')"
+                  class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+            Ver comunicados e novidades
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       PÁGINA 2 — NOVIDADES E ATUALIZAÇÕES
+       ===================================================================== -->
+  <section id="page-novidades" class="page-view hidden bg-brand-light min-h-[75vh] py-14 sm:py-20 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="mb-10">
+        <button type="button" onclick="navigateTo('institucional', 'inicio')"
+                class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-brand-dark transition-colors mb-6">
+          <span aria-hidden="true">&larr;</span>
+          <span>Voltar para a página institucional</span>
+        </button>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-6">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Mural Informativo</span>
+            <h1 class="font-display text-2xl sm:text-4xl font-bold text-brand-dark mt-2">
+              Novidades e Atualizações
+            </h1>
+            <p class="text-gray-600 mt-2 max-w-2xl">
+              Comunicados oficiais, alterações de horários, melhorias na estrutura e avisos importantes para os alunos da <span data-bind="nome">[NOME DA ACADEMIA]</span>.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label for="filtro-categoria" class="text-xs font-medium text-gray-500">Filtrar:</label>
+            <select id="filtro-categoria" onchange="renderUpdates(this.value)"
+                    class="text-sm bg-white border border-gray-300 rounded-md px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-dark">
+              <option value="todas">Todas as publicações</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="lista-novidades" class="space-y-6"></div>
+
+      <div class="mt-12 p-5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <strong class="font-semibold text-brand-dark block">Dúvidas sobre algum comunicado ou horário?</strong>
+          <span>Entre em contato diretamente com nossa equipe de atendimento.</span>
+        </div>
+        <a href="#" data-whatsapp-link="Olá! Vi um comunicado na página de novidades e gostaria de mais informações." target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-brand-dark hover:bg-brand-accent rounded-md transition-colors shrink-0">
+          Falar com a recepção
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODAL DE LEITURA COMPLETA -->
+  <div id="modal-comunicado" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="bg-white rounded-lg max-w-xl w-full p-6 sm:p-8 shadow-xl border border-gray-200 space-y-4">
+      <div class="flex items-center justify-between text-xs text-gray-500">
+        <span id="modal-categoria" class="font-semibold uppercase tracking-wider text-brand-accent">Categoria</span>
+        <span id="modal-data">Data</span>
+      </div>
+      <h2 id="modal-titulo" class="font-display text-xl sm:text-2xl font-bold text-brand-dark">Título</h2>
+      <p id="modal-texto" class="text-gray-700 leading-relaxed text-sm sm:text-base whitespace-pre-line"></p>
+      <div class="pt-4 border-t border-gray-100 flex justify-end">
+        <button type="button" onclick="closeUpdateModal()"
+                class="px-5 py-2.5 text-sm font-medium text-white bg-brand-dark hover:bg-gray-800 rounded-md transition-colors">
+          Fechar comunicado
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       8. RODAPÉ INSTITUCIONAL
+       ===================================================================== -->
+  <footer class="bg-brand-dark text-gray-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <div class="space-y-3">
+          <div class="font-display font-bold text-lg text-white" data-bind="nome">[NOME DA ACADEMIA]</div>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Treinamento físico orientado com seriedade, respeito e foco na saúde dos alunos.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-display font-semibold text-sm uppercase tracking-wider text-white">Navegação</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#sobre" onclick="navigateTo('institucional', 'sobre')" class="hover:text-white transition-colors">Sobre a Academia</a></li>
+            <li><a href="#estrutura" onclick="navigateTo('institucional', 'estrutura')" class="hover:text-white transition-colors">Estrutura e Modalidades</a></li>
+            <li><a href="#equipe" onclick="navigateTo('institucional', 'equipe')" class="hover:text-white transition-colors">Profissionais</a></li>
+            <li><button type="button" onclick="navigateTo('novidades')" class="hover:text-white transition-colors">Novidades e Atualizações</button></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-display font-semibold text-sm uppercase tracking-wider text-white">Horários</h4>
+          <ul id="footer-horarios" class="space-y-2 text-sm text-gray-400"></ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-display font-semibold text-sm uppercase tracking-wider text-white">Contato</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li data-bind="enderecoCompleto">[Rua Exemplo, 123 — Bairro, Cidade - UF]</li>
+            <li>
+              <a href="#" data-whatsapp-link="Olá! Gostaria de falar com a academia." target="_blank" rel="noopener noreferrer"
+                 class="hover:text-white transition-colors" data-bind="whatsappExibicao">
+                ([DDD]) [99999-9999]
+              </a>
+            </li>
+            <li>
+              <a href="#" data-instagram-link target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors pt-1">
+                <span>Instagram:</span>
+                <span class="underline underline-offset-4" data-bind="instagramUsuario">@[perfil_da_academia]</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <p>&copy; <span id="ano-atual">2026</span> <span data-bind="nome">[NOME DA ACADEMIA]</span>. Todos os direitos reservados.</p>
+        <p>CNPJ: <span class="text-gray-400">[00.000.000/0001-00]</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts da aplicação -->
+  <script src="js/app.js"></script>
+</body>
+</html>

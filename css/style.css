@@ -1,0 +1,37 @@
+/* =====================================================================
+   ESTILOS GLOBAIS — SITE INSTITUCIONAL DE ACADEMIA
+   ===================================================================== */
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #111315;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Transição suave entre páginas sem recarregamento */
+.page-view {
+  animation: fadeIn 0.28s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sinalização de campos a preencher */
+.placeholder-field {
+  border-bottom: 1px dashed #B45309;
+  padding-bottom: 1px;
+}
